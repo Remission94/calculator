@@ -8,22 +8,19 @@ let result = document.querySelector("#result")
 
 
 function operate (firstNumber,operator,secondNumber) {
-    if (operator == "+") return +firstNumber + +secondNumber;
-    if (operator == "-") return +firstNumber - +secondNumber;
-    if (operator == "*") return +firstNumber * +secondNumber;
-    if (operator == "/") return +firstNumber / +secondNumber;
-}
-
-
-
-function alertMe () {
-    alert("HI")
+    if (operator == "+") return parseFloat((+firstNumber + +secondNumber).toFixed(5));
+    if (operator == "-") return parseFloat((+firstNumber - +secondNumber).toFixed(5));
+    if (operator == "*") return parseFloat((+firstNumber * +secondNumber).toFixed(5));
+    if (operator == "/") return parseFloat((+firstNumber / +secondNumber).toFixed(5));
 }
 
 const numButtons = document.querySelectorAll(".num");
 numButtons.forEach(btn => {
     btn.addEventListener("click", () => { 
-        if (result.textContent == 0) {
+        if (btn.textContent == "undo") {
+            result.textContent = result.textContent.slice(0,-1)
+        } else {
+          if (result.textContent == 0) {
             result.textContent = btn.textContent
         } else {
             if (operator != 0) {
@@ -31,7 +28,11 @@ numButtons.forEach(btn => {
                 operatorMem = operator
                 operator = 0
             }
+            if (btn.textContent == "." && result.textContent.includes(".")) {
+            } else {
             result.textContent += btn.textContent
+            }
+            }
         }
     })
 })
@@ -39,19 +40,22 @@ numButtons.forEach(btn => {
 const operatorBtn = document.querySelectorAll(".operator")
 operatorBtn.forEach(btn => {
     btn.addEventListener("click", () => {
-        operator = operatorMem
+        
         if (firstNumber == 0) {
             firstNumber = result.textContent
-            operator = btn.textContent
-        } else if (firstNumber != 0 ) {
+        } else if (operator == "=") {
+
+        } else if (firstNumber != 0) {
+            operator = operatorMem
             secondNumber = result.textContent
+            if (secondNumber == 0 && operator == "/") {
+                result.textContent = "Can't divide with 0"
+            } else {
             result.textContent = operate(firstNumber, operator, secondNumber)
-            firstNumber = result.textContent
-            if (operator != "=") {
-                operator = btn.textContent
-            }
+            firstNumber = result.textContent   
+                } 
         }
-        
+        operator = btn.textContent
     })
 })
 
