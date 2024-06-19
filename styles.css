@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: black;
+}
+
+.container {
+    border: 1px solid yellow;
+    height: 700px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.display {
+    border: 1px solid black;
+    height: 100px;
+    width: 400px;
+    background-color: rgb(43, 43, 43);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 40px;
+    color: white;
+}
+
+#result {
+    padding-right: 10px;
+}
+
+.buttons {
+    border: 1px solid black;
+    height: 500px;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 85px;
+    width: 85px;
+    font-size: 40px;
+    color: white;
+    background-color: rgb(26, 26, 26);
+}
+
+button#undo {
+    font-size: 25px;
+}
+
+button.operator {
+    color: yellow;
+}
+
+button#equal {
+    background-color: yellow;
+    color: black;
+}
+
+button#zero {
+    height: 85px;
+    width: 190px;
+}
